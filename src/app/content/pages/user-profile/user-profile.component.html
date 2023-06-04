@@ -1,0 +1,154 @@
+<div class="content-wrapper px-4 py-2">
+    <div class="content-header">
+        <h1 class="text-dark">Perfil  de Usuario y vehículos asignados</h1>
+    </div>
+    <div class="content px-2">
+        <div style="padding-bottom: 5px;"></div>
+        <div>
+            <form [formGroup]="form" >
+                <div class="row">
+                    <div class="col-sm-12 m--margin-bottom-10-mobile">
+                        <h2 class="text-dark">Datos Personales</h2>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Nombre" placeholder="Nombres" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Apellidos" placeholder="Apellidos" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Documento" placeholder="Documento de identidad" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Mail" placeholder="Mail" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Telefono" placeholder="Teléfono" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Licencia" placeholder="Nro de Licencia" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="col-sm-12 m--margin-bottom-10-mobile">
+                        <h2 class="text-dark">Lista de vehículos asignados al usuario</h2>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="searchKey" placeholder="Buscar en la tabla..." autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid" (keyup)="searchTable()">
+                            <mat-hint align="start">
+                                <strong>Buscar en todos los campos</strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                            
+                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                        <button type="button" mat-mini-fab color="bg-green" (click)="getMainList()" matTooltip="Iniciar Búsqueda">
+                            <i class="fas fa-search"></i>           
+                        </button>
+                    </div>
+                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                    </div>
+                </div>                                
+            </form>
+        </div>
+        <div style="padding-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="mat-table__wrapper">
+                    <mat-table class="lmat-elevation-z8" [dataSource]="listData" matSort perfectScrollbar>
+  
+                        <ng-container matColumnDef="Nro">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nro</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{getNumber_byItem(lesson)}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="Marca">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Marca</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.brand}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="Matricula">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Matrícula</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.registrationPlate}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="Activo">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Activo</mat-header-cell>
+                          <mat-cell *matCellDef="let lesson">
+                            <span class="m-badge m-badge--{{ getCssClassByEstado(lesson.active) }} m-badge--wide">{{getEstadoString(lesson.active)}}</span>
+                          </mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef>
+                                Actions
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">                              
+  
+                                <button  mat-icon-button style="color: #b7343d !important" type="button" 
+                                (click)="open_modal_edit(lesson)"matTooltip="Ficha Técnica Vehículo">
+                                    <mat-icon>directions_car</mat-icon>
+                                </button>
+  
+                            </mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="loading">
+                            <mat-footer-cell *matFooterCellDef colspan="5">
+                                Loading data...
+                            </mat-footer-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="noData">
+                            <mat-footer-cell *matFooterCellDef colspan="5">
+                                No se encontraron registros.
+                            </mat-footer-cell>
+                        </ng-container>
+  
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  
+                        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': listData!=null}">
+                        </mat-footer-row>
+                        <mat-footer-row *matFooterRowDef="['noData']"
+                            [ngClass]="{'hide': !(listData!=null && listData.data.length==0)}"></mat-footer-row>
+                    </mat-table>
+                </div>
+                <!-- start: BOTTOM -->
+                <div class="mat-table__bottom">
+                    <mat-spinner [diameter]="20" *ngIf=" array_dataList == null"></mat-spinner>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 50, 100, 200]" [pageSize]="5" showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div>
+    <div class="content-header">
+        <h1 class="text-dark">Datos del vehículo</h1>
+    </div>
+    <div class="content px-2">
+        <div style="padding-bottom: 5px;"></div>
+        <div>
+            <form [formGroup]="form" >
+                <div class="row">
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="RegistrationPlate" placeholder="Matrícula" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Brand" placeholder="Marca" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Model" placeholder="Modelo" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Color" placeholder="Color" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="DoorsPassenger" placeholder="Número de puertas" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Category" placeholder="Categoría" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>                    
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Power" placeholder="Potencia" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="Fuel" placeholder="Tipo de Combustible" autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid">
+                            <mat-hint align="start">
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>                 
+                </div>                                
+            </form>
+        </div>
+        <div style="padding-bottom: 10px;"></div>
+    </div>
+</div>
